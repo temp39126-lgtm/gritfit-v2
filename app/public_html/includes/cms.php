@@ -357,7 +357,7 @@ function cms_echo_cover_img($path, $alt = '') {
     if ($path === '') {
         return;
     }
-    echo '<img class="cover-img" src="' . e(asset_url($path)) . '" alt="' . e($alt) . '">';
+    echo '<img class="cover-img cover-image" src="' . e(asset_url($path)) . '" alt="' . e($alt) . '">';
 }
 
 // Render the active banners for a position as a slider/carousel.
