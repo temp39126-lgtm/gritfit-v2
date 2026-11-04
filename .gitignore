@@ -1,0 +1,7 @@
+# Database dumps — import locally only; never commit production data
+u582313683_gritfitnutri*.sql
+*gritfitnutri*.sql
+*.sql.gz
+
+# Local extract / uploads (use releases or deploy separately)
+public_html*.zip
