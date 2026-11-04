@@ -5,3 +5,5 @@ u582313683_gritfitnutri*.sql
 
 # Local extract / uploads (use releases or deploy separately)
 public_html*.zip
+app/public_html/uploads/
+app/public_html/stage_test/
