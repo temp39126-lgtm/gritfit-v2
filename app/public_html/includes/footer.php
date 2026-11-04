@@ -47,16 +47,10 @@ if (empty($socialSvg)) {
 <?php render_banner_slider('bottom'); /* banners assigned to the "Bottom" position */ ?>
 
 <?php if (cms_flag('bottombanner_enabled') && setting('bottombanner_title')):
-    $bbDesk = trim(setting('bottombanner_image'));
-    $bbMob = trim(setting('bottombanner_image_mobile'));
-    $bbStyle = '';
-    if ($bbDesk !== '' || $bbMob !== '') {
-        $dUrl = $bbDesk !== '' ? asset_url($bbDesk) : asset_url($bbMob);
-        $mUrl = $bbMob !== '' ? asset_url($bbMob) : $dUrl;
-        $bbStyle = ' style="--bb-bg-desktop:url(\'' . e($dUrl) . '\');--bb-bg-mobile:url(\'' . e($mUrl) . '\');"';
-    }
+    $bbImg = trim(setting('bottombanner_image'));
+    $bbStyle = $bbImg !== '' ? ' style="--bb-bg:url(\'' . e(asset_url($bbImg)) . '\');"' : '';
 ?>
-<section class="bottom-banner<?= $bbStyle !== '' ? ' bottom-banner--has-bg' : '' ?>"<?= $bbStyle ?>>
+<section class="bottom-banner<?= $bbImg !== '' ? ' bottom-banner--has-bg' : '' ?>"<?= $bbStyle ?>>
     <div class="container">
         <h2><?= e(setting('bottombanner_title')) ?></h2>
         <?php if (setting('bottombanner_text')): ?><p><?= e(setting('bottombanner_text')) ?></p><?php endif; ?>

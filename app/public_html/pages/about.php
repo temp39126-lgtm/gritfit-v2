@@ -4,8 +4,8 @@ $pageDesc = setting('about_intro');
 ?>
 
 <section class="page-hero">
-    <?php if (setting('about_hero_image') || setting('about_hero_image_mobile')): ?>
-    <?php cms_echo_responsive_banner_img(setting('about_hero_image'), setting('about_hero_image_mobile'), $pageTitle); ?>
+    <?php if (setting('about_hero_image')): ?>
+    <?php cms_echo_cover_img(setting('about_hero_image'), $pageTitle); ?>
     <?php endif; ?>
     <div class="page-hero-overlay"></div>
     <h1><?= e($pageTitle) ?></h1>
@@ -42,9 +42,9 @@ $pageDesc = setting('about_intro');
 </section>
 <?php endif; ?>
 
-<?php if (setting('about_banner_image') || setting('about_banner_image_mobile')): ?>
+<?php if (setting('about_banner_image')): ?>
 <div class="banner-section">
-    <?php cms_echo_responsive_banner_img(setting('about_banner_image'), setting('about_banner_image_mobile'), setting('about_banner_alt')); ?>
+    <?php cms_echo_cover_img(setting('about_banner_image'), setting('about_banner_alt')); ?>
 </div>
 <?php endif; ?>
 

@@ -19,11 +19,10 @@ foreach ($order as $section):
         render_banner_slider('hero', 'banner-slider');
         if (!cms_flag('hero_enabled')) break;
         $heroImg = setting('hero_image');
-        $heroImgMobile = setting('hero_image_mobile');
         ?>
         <section class="hero">
-            <?php if (setting('hero_type') === 'image' && ($heroImg || $heroImgMobile)): ?>
-                <?php cms_echo_responsive_banner_img($heroImg, $heroImgMobile); ?>
+            <?php if (setting('hero_type') === 'image' && $heroImg): ?>
+                <?php cms_echo_cover_img($heroImg); ?>
             <?php elseif (setting('hero_video')): ?>
                 <video autoplay muted loop playsinline><source src="<?= e(setting('hero_video')) ?>" type="video/mp4"></video>
             <?php endif; ?>
@@ -115,8 +114,8 @@ foreach ($order as $section):
                         <p><?= e(setting('abouthome_text')) ?></p>
                         <?php if (setting('abouthome_btn_text')): ?><a href="<?= e(link_url(setting('abouthome_btn_link'))) ?>" class="btn btn-primary"><?= e(setting('abouthome_btn_text')) ?></a><?php endif; ?>
                     </div>
-                    <?php if (setting('abouthome_image') || setting('abouthome_image_mobile')): ?>
-                    <div class="about-home-img"><?php cms_echo_responsive_banner_img(setting('abouthome_image'), setting('abouthome_image_mobile'), 'About'); ?></div>
+                    <?php if (setting('abouthome_image')): ?>
+                    <div class="about-home-img"><?php cms_echo_cover_img(setting('abouthome_image'), 'About'); ?></div>
                     <?php endif; ?>
                 </div>
             </div>

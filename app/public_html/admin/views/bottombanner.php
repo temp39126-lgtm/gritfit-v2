@@ -6,7 +6,7 @@
         <input type="hidden" name="action" value="save_settings">
         <input type="hidden" name="return" value="bottombanner">
         <div class="form-group"><label class="chk"><input type="hidden" name="s[bottombanner_enabled]" value="0"><input type="checkbox" name="s[bottombanner_enabled]" value="1" <?= cms_flag('bottombanner_enabled') ? 'checked' : '' ?>> Show bottom banner</label></div>
-        <?php adm_setting_desktop_mobile_images('bottombanner_image', 'bottombanner_image_mobile'); ?>
+        <?php adm_setting_image('bottombanner_image', 'Background image (optional)'); ?>
         <div class="form-group"><label>Heading</label><input type="text" name="s[bottombanner_title]" value="<?= e(setting('bottombanner_title')) ?>"></div>
         <div class="form-group"><label>Text</label><textarea name="s[bottombanner_text]"><?= e(setting('bottombanner_text')) ?></textarea></div>
         <div class="form-row">

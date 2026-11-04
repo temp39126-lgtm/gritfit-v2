@@ -32,7 +32,7 @@ function hp_area($key, $label) {
             </select>
         </div>
         <?php hp_text('hero_video', 'Background Video URL (mp4)'); ?>
-        <?php adm_setting_desktop_mobile_images('hero_image', 'hero_image_mobile'); ?>
+        <?php adm_setting_image('hero_image', 'Background image'); ?>
         <p class="hint">Applies when background type is <strong>Image</strong> (not video).</p>
         <?php hp_text('hero_title', 'Heading'); ?>
         <?php hp_text('hero_subtitle', 'Subheading'); ?>
@@ -70,7 +70,7 @@ function hp_area($key, $label) {
         <?php hp_chk('abouthome_enabled', 'Show about section'); ?>
         <?php hp_text('abouthome_title', 'Title'); ?>
         <?php hp_area('abouthome_text', 'Text'); ?>
-        <?php adm_setting_desktop_mobile_images('abouthome_image', 'abouthome_image_mobile'); ?>
+        <?php adm_setting_image('abouthome_image', 'Section image'); ?>
         <div class="form-row">
             <?php hp_text('abouthome_btn_text', 'Button Text'); hp_text('abouthome_btn_link', 'Button Link'); ?>
         </div>

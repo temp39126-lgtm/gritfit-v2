@@ -135,13 +135,13 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
 
 /* Page Hero */
 .page-hero{position:relative;height:350px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.page-hero img,.page-hero .banner-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;}
-.page-hero .banner-img--mobile{display:none;}
-.banner-section .banner-img{width:100%;height:350px;object-fit:cover;}
-.banner-section .banner-img--mobile{display:none;}
-.about-home-img .banner-img{width:100%;height:auto;object-fit:cover;border-radius:var(--radius);}
-.about-home-img .banner-img--mobile{display:none;}
-.bottom-banner--has-bg{background-image:linear-gradient(rgba(13,20,26,0.7),rgba(13,20,26,0.7)),var(--bb-bg-desktop);background-size:cover;background-position:center;}
+/* One uploaded image — cover + center crop on all breakpoints */
+.cover-img{display:block;max-width:100%;}
+.page-hero .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;}
+.banner-section .cover-img{width:100%;height:min(350px,42vh);min-height:200px;object-fit:cover;object-position:center center;}
+.about-home-img{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);max-height:380px;}
+.about-home-img .cover-img{width:100%;height:100%;min-height:220px;max-height:380px;object-fit:cover;object-position:center center;}
+.bottom-banner--has-bg{background-image:linear-gradient(rgba(13,20,26,0.7),rgba(13,20,26,0.7)),var(--bb-bg);background-size:cover;background-position:center center;}
 .page-hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.65);}
 .page-hero h1{position:relative;z-index:1;color:var(--about-hero-h1-color,#fff);font-size:var(--about-hero-h1-size,48px);}
 .page-about .page-hero h1{color:var(--about-hero-h1-color,#fff);font-size:var(--about-hero-h1-size,48px);}
@@ -176,15 +176,14 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
 .product-main-image{position:relative;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--white);padding:20px;display:flex;align-items:center;justify-content:center;min-height:400px;}
 .product-main-image img{max-height:380px;max-width:100%;object-fit:contain;}
 .product-thumbs{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
-.product-description{overflow-wrap:break-word;word-wrap:break-word;}
-.product-description table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .thumb{border:2px solid var(--border);border-radius:8px;padding:5px;cursor:pointer;width:80px;height:80px;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
 .thumb.active,.thumb:hover{border-color:var(--primary);}
 .thumb img{max-height:60px;max-width:60px;object-fit:contain;}
 .product-info h1{font-size:32px;margin-bottom:15px;}
 .product-price{font-size:24px;font-weight:700;color:var(--primary);margin-bottom:20px;font-family:'Poppins',sans-serif;}
 .product-short-desc{font-size:15px;color:var(--text-light);margin-bottom:20px;line-height:1.7;}
-.product-description{font-size:14px;color:var(--text-light);line-height:1.8;margin-bottom:25px;padding:20px;background:var(--light-bg);border-radius:var(--radius);}
+.product-description{font-size:14px;color:var(--text-light);line-height:1.8;margin-bottom:25px;padding:20px;background:var(--light-bg);border-radius:var(--radius);overflow-wrap:break-word;word-wrap:break-word;}
+.product-description table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .product-cta{display:flex;gap:15px;margin-bottom:25px;flex-wrap:wrap;}
 .product-meta{font-size:14px;color:var(--text-muted);padding-top:20px;border-top:1px solid var(--border);}
 .product-meta a{color:var(--primary);}
@@ -268,22 +267,8 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
 .hero-slider.banner-slider .slides{position:relative;width:100%;height:var(--banner-h,380px);min-height:200px;}
 .hero-slider .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 0.9s ease;display:flex;align-items:center;justify-content:center;}
 .hero-slider .slide.active{opacity:1;visibility:visible;}
-.hero-slider .slide>img,.hero-slider .slide>video,.hero-slider .slide .banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
-.hero-slider .slide .banner-img--mobile{display:none;}
-.hero .banner-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;}
-.hero .banner-img--mobile{display:none;}
-@media(max-width:768px){
-    .hero-slider .slide .banner-img--desktop{display:none;}
-    .hero-slider .slide .banner-img--mobile{display:block;}
-    .hero .banner-img--desktop{display:none;}
-    .hero .banner-img--mobile{display:block;}
-    .page-hero .banner-img--desktop{display:none;}
-    .page-hero .banner-img--mobile{display:block;}
-    .banner-section .banner-img--desktop{display:none;}
-    .banner-section .banner-img--mobile{display:block;}
-    .about-home-img .banner-img--desktop{display:none;}
-    .about-home-img .banner-img--mobile{display:block;}
-    .bottom-banner--has-bg{background-image:linear-gradient(rgba(13,20,26,0.7),rgba(13,20,26,0.7)),var(--bb-bg-mobile,var(--bb-bg-desktop));}
+.hero-slider .slide>img,.hero-slider .slide>video,.hero-slider .slide .cover-img,.hero .cover-img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;
 }
 .hero-slider .slide-content{padding:0 16px;max-width:min(760px,100%);}
 .hero-slider .slide-content .slide-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
@@ -394,7 +379,8 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
     .hero-slider:not(.banner-slider) .slides{height:min(var(--slider-h,460px),42vh,400px);min-height:220px;}
     .hero-slider.banner-slider .slides{height:min(var(--banner-h,380px),32vh,300px);min-height:180px;}
     .page-hero{height:min(350px,45vh);min-height:220px;}
-    .banner-section .banner-img{height:min(350px,40vh);min-height:200px;}
+    .banner-section .cover-img{height:min(320px,38vh);min-height:180px;object-position:center 35%;}
+    .hero-slider .slide .cover-img,.page-hero .cover-img{object-position:center 35%;}
     .about-home-img img{height:auto;max-height:320px;}
     .product-card .product-img-wrap{height:260px;}
 }

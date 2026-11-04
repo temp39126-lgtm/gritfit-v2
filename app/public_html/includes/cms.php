@@ -44,7 +44,6 @@ function cms_defaults() {
         'hero_type'            => 'video',
         'hero_video'           => 'https://videos.pexels.com/video-files/8844271/8844271-uhd_4096_2160_24fps.mp4',
         'hero_image'           => '',
-        'hero_image_mobile'    => '',
         'hero_title'           => 'Superfood Bars',
         'hero_subtitle'        => 'Fuel Your Day with Natural Energy and Health',
         'hero_btn1_text'       => 'About Us',
@@ -70,7 +69,6 @@ function cms_defaults() {
         'abouthome_title'      => 'About Grit Fit Nutri',
         'abouthome_text'       => 'At Grit Fit Nutri, we create premium superfood energy bars that combine natural ingredients with health benefits for a modern lifestyle.',
         'abouthome_image'        => 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=583,fit=crop/silemQfqUS99dRJ2/strawberry-about-mini-banner2-A3QOVoO0VXfMgyEo.jpg',
-        'abouthome_image_mobile' => '',
         'abouthome_btn_text'   => 'Learn More',
         'abouthome_btn_link'   => '/about-us',
 
@@ -83,9 +81,7 @@ function cms_defaults() {
         'about_vision_title'   => 'Our Vision',
         'about_vision_text'    => 'At Grit Fit Nutri, our mission is to promote a healthier lifestyle by delivering premium, preservative-free superfood energy bars packed with natural nutrition. We are committed to quality, innovation, and sustainability, ensuring that our products meet global standards.',
         'about_banner_image'   => 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/silemQfqUS99dRJ2/collective-combination-1024x402-Yleqa574RZUoMZPw.jpg',
-        'about_banner_image_mobile' => '',
         'about_banner_alt'     => 'Products',
-        'about_hero_image_mobile' => '',
         'about_block1_title'   => 'GritFit Nutri – Your Trusted Partner for Global Nutrition Exports',
         'about_block1_text'    => 'GritFit Nutri is a leading manufacturer of premium nutritional products, specializing in white-label and private-label solutions. With world-class production facilities, stringent quality standards, and a commitment to international markets, we empower businesses to scale globally with confidence.',
         'about_block2_title'   => 'Scalable Manufacturing & Quality Assurance',
@@ -118,7 +114,6 @@ function cms_defaults() {
         // Bottom banner (call to action)
         'bottombanner_enabled' => '1',
         'bottombanner_image'   => '',
-        'bottombanner_image_mobile' => '',
         'bottombanner_title'   => 'Ready to Fuel Your Day?',
         'bottombanner_text'    => 'Explore our range of premium superfood energy bars made with clean, natural ingredients.',
         'bottombanner_btn_text' => 'Shop Now',
@@ -356,19 +351,13 @@ function cms_rows($table, $activeOnly = true, $where = '', $params = []) {
     return $stmt->fetchAll();
 }
 
-// Desktop + optional mobile banner art for sliders and static hero backgrounds.
-function cms_echo_responsive_banner_img($desktop, $mobile = '', $alt = '') {
-    $desktop = trim((string) $desktop);
-    $mobile = trim((string) $mobile);
-    $altAttr = $alt !== '' ? ' alt="' . e($alt) . '"' : ' alt=""';
-    if ($mobile !== '' && $desktop !== '') {
-        echo '<img class="banner-img banner-img--desktop" src="' . e(asset_url($desktop)) . '"' . $altAttr . '>';
-        echo '<img class="banner-img banner-img--mobile" src="' . e(asset_url($mobile)) . '"' . $altAttr . '>';
-    } elseif ($mobile !== '') {
-        echo '<img class="banner-img" src="' . e(asset_url($mobile)) . '"' . $altAttr . '>';
-    } else {
-        echo '<img class="banner-img" src="' . e(asset_url($desktop)) . '"' . $altAttr . '>';
+// Single banner/hero image — CSS (object-fit: cover) scales it on desktop and mobile.
+function cms_echo_cover_img($path, $alt = '') {
+    $path = trim((string) $path);
+    if ($path === '') {
+        return;
     }
+    echo '<img class="cover-img" src="' . e(asset_url($path)) . '" alt="' . e($alt) . '">';
 }
 
 // Render the active banners for a position as a slider/carousel.
@@ -379,7 +368,7 @@ function render_banner_slider($position, $extraClass = 'banner-slider') {
     $banners = cms_rows('banners', true, "position=?", [$position]);
     $banners = array_values(array_filter(
         $banners,
-        fn($b) => $b['image'] !== '' || !empty($b['image_mobile']) || !empty($b['video']) || $b['title'] !== ''
+        fn($b) => $b['image'] !== '' || !empty($b['video']) || $b['title'] !== ''
     ));
     if (empty($banners)) return;
     $multi = count($banners) > 1;
@@ -390,8 +379,8 @@ function render_banner_slider($position, $extraClass = 'banner-slider') {
         echo '<div class="slide ' . ($idx === 0 ? 'active' : '') . '">';
         if (!empty($b['video'])) {
             echo '<video autoplay muted loop playsinline><source src="' . e($b['video']) . '" type="video/mp4"></video>';
-        } elseif ($b['image'] || !empty($b['image_mobile'])) {
-            cms_echo_responsive_banner_img($b['image'] ?? '', $b['image_mobile'] ?? '', $b['title'] ?? '');
+        } elseif ($b['image']) {
+            cms_echo_cover_img($b['image'], $b['title'] ?? '');
         }
         if ($b['title'] || $b['subtitle'] || $b['button_text'] || !empty($b['button2_text'])) {
             echo '<div class="slide-overlay"></div><div class="slide-content">';

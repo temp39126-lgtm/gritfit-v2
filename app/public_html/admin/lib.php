@@ -133,42 +133,17 @@ function adm_image_field($label, $fileName, $urlName, $current = '') {
     echo '</div>';
 }
 
-// Two upload paths per banner: desktop + mobile (file upload or URL each).
-function adm_desktop_mobile_image_fields(
-    $desktopFile,
-    $desktopUrl,
-    $desktopCurrent,
-    $mobileFile,
-    $mobileUrl,
-    $mobileCurrent
-) {
-    echo '<div class="form-row">';
-    adm_image_field('Desktop image', $desktopFile, $desktopUrl, $desktopCurrent);
-    adm_image_field('Mobile image', $mobileFile, $mobileUrl, $mobileCurrent);
-    echo '</div>';
-    echo '<p class="hint">Upload a file or paste a URL for each. Mobile image is used on screens 768px wide and below when set; otherwise desktop is used.</p>';
-}
-
-// Same pair for settings stored via save_settings (file_<key> uploads).
-function adm_setting_desktop_mobile_images($desktopKey, $mobileKey) {
-    $desktop = setting($desktopKey);
-    $mobile = setting($mobileKey);
-    echo '<div class="form-row">';
-    echo '<div class="form-group"><label>Desktop image</label>';
-    if ($desktop !== '') {
-        echo '<div class="img-preview"><img src="' . e(asset_url($desktop)) . '" alt="preview"></div>';
+// Settings image (upload file_<key> or s[key] URL/path) — one image, responsive on the storefront.
+function adm_setting_image($settingKey, $label = 'Image') {
+    $current = setting($settingKey);
+    echo '<div class="form-group"><label>' . e($label) . '</label>';
+    if ($current !== '') {
+        echo '<div class="img-preview"><img src="' . e(asset_url($current)) . '" alt="preview"></div>';
     }
-    echo '<input type="file" name="file_' . e($desktopKey) . '" accept="image/*" onchange="previewImg(this)">';
-    echo '<input type="text" name="s[' . e($desktopKey) . ']" value="' . e($desktop) . '" class="mt8" placeholder="Upload or paste URL / path">';
+    echo '<input type="file" name="file_' . e($settingKey) . '" accept="image/*" onchange="previewImg(this)">';
+    echo '<input type="text" name="s[' . e($settingKey) . ']" value="' . e($current) . '" class="mt8" placeholder="Upload or paste URL / path">';
+    echo '<p class="hint">One image is auto-cropped to fit desktop and mobile (center, cover).</p>';
     echo '</div>';
-    echo '<div class="form-group"><label>Mobile image</label>';
-    if ($mobile !== '') {
-        echo '<div class="img-preview"><img src="' . e(asset_url($mobile)) . '" alt="preview"></div>';
-    }
-    echo '<input type="file" name="file_' . e($mobileKey) . '" accept="image/*" onchange="previewImg(this)">';
-    echo '<input type="text" name="s[' . e($mobileKey) . ']" value="' . e($mobile) . '" class="mt8" placeholder="Upload or paste URL / path">';
-    echo '</div></div>';
-    echo '<p class="hint">Upload a file or paste a URL for each. Mobile image is used on screens 768px wide and below when set; otherwise desktop is used.</p>';
 }
 function adm_active_checkbox($checked) {
     echo '<div class="form-group"><label class="chk"><input type="checkbox" name="is_active" ' . ($checked ? 'checked' : '') . '> Active (visible on site)</label></div>';

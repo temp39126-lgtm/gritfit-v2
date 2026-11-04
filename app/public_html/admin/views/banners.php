@@ -43,7 +43,7 @@ $positions = [
 </div>
 <div class="card">
     <h3><?= $edit ? 'Edit Banner' : 'Add Banner' ?></h3>
-    <p class="hint">Each banner has separate <strong>Desktop image</strong> and <strong>Mobile image</strong> uploads (file or URL). "Mid" banners appear in the banner strip on the homepage.</p>
+    <p class="hint">Upload one banner image — it is auto-adjusted for desktop and mobile. "Mid" banners appear in the banner strip on the homepage.</p>
     <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="save_banner">
         <?php if ($edit): ?><input type="hidden" name="id" value="<?= (int)$edit['id'] ?>"><?php endif; ?>
@@ -55,11 +55,8 @@ $positions = [
             </select>
         </div>
         <input type="hidden" name="current_image" value="<?= e($edit['image'] ?? '') ?>">
-        <input type="hidden" name="current_image_mobile" value="<?= e($edit['image_mobile'] ?? '') ?>">
-        <?php adm_desktop_mobile_image_fields(
-            'image_file', 'image_url', $edit['image'] ?? '',
-            'image_mobile_file', 'image_mobile_url', $edit['image_mobile'] ?? ''
-        ); ?>
+        <?php adm_image_field('Banner image', 'image_file', 'image_url', $edit['image'] ?? ''); ?>
+        <p class="hint">Recommended: wide image (e.g. 1920×600). The site crops it to fit all screen sizes.</p>
         <?php adm_text('Background Video URL (mp4) — for slider video slides; overrides image when set', 'video', $edit['video'] ?? '', 'text', 'placeholder="https://.../video.mp4"'); ?>
         <div class="form-row">
             <?php adm_text('Title (optional)', 'title', $edit['title'] ?? ''); ?>
@@ -82,11 +79,10 @@ $positions = [
 <div class="card">
     <h3>All Banners</h3>
     <table>
-        <tr><th>Image</th><th>Mobile</th><th>Position</th><th>Title</th><th>Order</th><th>Status</th><th>Actions</th></tr>
+        <tr><th>Image</th><th>Position</th><th>Title</th><th>Order</th><th>Status</th><th>Actions</th></tr>
         <?php foreach ($rows as $b): ?>
         <tr>
             <td><?php if (!empty($b['video'])): ?><span class="badge-sm badge-gray">▶ video</span><?php elseif ($b['image']): ?><img class="thumb" src="<?= e(asset_url($b['image'])) ?>"><?php else: ?>—<?php endif; ?></td>
-            <td><?php if (!empty($b['image_mobile'])): ?><img class="thumb" src="<?= e(asset_url($b['image_mobile'])) ?>" alt="Mobile"><?php else: ?><span class="hint">—</span><?php endif; ?></td>
             <td><?= e($b['position']) ?></td>
             <td><?= e($b['title']) ?></td>
             <td><?= (int)$b['sort_order'] ?></td>

@@ -143,7 +143,6 @@ switch ($action) {
             'video' => trim($_POST['video'] ?? ''),
             'is_active' => (int)($_POST['is_active'] ?? 0),
             'image' => cms_resolve_image('image_file', 'image_url', 'banners', $_POST['current_image'] ?? ''),
-            'image_mobile' => cms_resolve_image('image_mobile_file', 'image_mobile_url', 'banners', $_POST['current_image_mobile'] ?? ''),
         ];
         if (!$id) $fields['sort_order'] = cms_next_order('banners');
         cms_upsert('banners', $fields, $id);

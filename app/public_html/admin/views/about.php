@@ -15,7 +15,7 @@ function about_area($key, $label) {
 
     <div class="card">
         <h3>Top banner (hero)</h3>
-        <?php adm_setting_desktop_mobile_images('about_hero_image', 'about_hero_image_mobile'); ?>
+        <?php adm_setting_image('about_hero_image', 'Hero background image'); ?>
         <?php about_text('about_hero_title', 'Page heading (over image)'); ?>
     </div>
 
@@ -40,7 +40,7 @@ function about_area($key, $label) {
 
     <div class="card">
         <h3>Full-width banner image</h3>
-        <?php adm_setting_desktop_mobile_images('about_banner_image', 'about_banner_image_mobile'); ?>
+        <?php adm_setting_image('about_banner_image', 'Banner image'); ?>
         <?php about_text('about_banner_alt', 'Image alt text'); ?>
     </div>
 
