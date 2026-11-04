@@ -373,10 +373,21 @@ function render_banner_slider($position, $extraClass = 'banner-slider') {
     if (empty($banners)) return;
     $multi = count($banners) > 1;
     $cls = trim('hero-slider ' . $extraClass);
+    $allGraphic = true;
+    foreach ($banners as $b) {
+        if ($b['title'] !== '' || $b['subtitle'] !== '' || $b['button_text'] !== '' || !empty($b['button2_text'])) {
+            $allGraphic = false;
+            break;
+        }
+    }
+    if ($allGraphic) {
+        $cls .= ' hero-slider--graphic';
+    }
     $intervalMs = cms_slider_interval_ms();
     echo '<section class="' . e($cls) . '" data-interval="' . (int) $intervalMs . '"><div class="slides">';
     foreach ($banners as $idx => $b) {
-        echo '<div class="slide ' . ($idx === 0 ? 'active' : '') . '">';
+        $hasOverlay = ($b['title'] !== '' || $b['subtitle'] !== '' || $b['button_text'] !== '' || !empty($b['button2_text']));
+        echo '<div class="slide ' . ($idx === 0 ? 'active' : '') . ($hasOverlay ? '' : ' slide--graphic') . '">';
         if (!empty($b['video'])) {
             echo '<video autoplay muted loop playsinline><source src="' . e($b['video']) . '" type="video/mp4"></video>';
         } elseif ($b['image']) {
