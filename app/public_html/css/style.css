@@ -16,12 +16,19 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
 .container{max-width:1200px;margin:0 auto;padding:0 20px;}
 
 /* Announcement */
-.announcement-bar{background:var(--primary-dark);color:var(--white);font-size:13px;letter-spacing:0.5px;}
+.announcement-bar{background:var(--primary-dark);color:var(--white);font-size:13px;letter-spacing:0.5px;width:100%;box-sizing:border-box;}
 .announcement-bar:not(.announcement-bar--scroll){text-align:center;padding:8px 20px;}
-.announcement-bar--scroll{overflow:hidden;padding:8px 0;white-space:nowrap;}
+/* Scrolling: each copy is one full bar width so wide screens do not show double text + empty gap */
+.announcement-bar--scroll{overflow:hidden;padding:8px 0;}
 .announcement-bar--scroll a{color:inherit;}
-.announcement-track{display:inline-flex;width:max-content;will-change:transform;animation:announcement-scroll var(--adbar-duration,25s) linear infinite;}
-.announcement-segment{padding:0 4rem;flex-shrink:0;display:inline-block;}
+.announcement-track{
+    display:flex;flex-wrap:nowrap;width:200%;will-change:transform;
+    animation:announcement-scroll var(--adbar-duration,25s) linear infinite;
+}
+.announcement-segment{
+    flex:0 0 50%;width:50%;box-sizing:border-box;padding:0 20px;
+    text-align:center;white-space:nowrap;
+}
 @keyframes announcement-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @media (prefers-reduced-motion:reduce){
     .announcement-bar--scroll .announcement-track{animation:none;}
