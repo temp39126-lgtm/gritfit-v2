@@ -7,8 +7,8 @@
     --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-hover:0 8px 30px rgba(0,0,0,0.12);
     --radius:12px;--transition:0.3s ease;
 }
-html{scroll-behavior:smooth;}
-body{font-family:var(--font-body,'Poppins',sans-serif);font-size:var(--body-font-size,16px);color:var(--text);line-height:1.7;background:var(--body-bg,var(--white));overflow-x:hidden;}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%;}
+body{font-family:var(--font-body,'Poppins',sans-serif);font-size:var(--body-font-size,16px);color:var(--text);line-height:1.7;background:var(--body-bg,var(--white));overflow-x:hidden;max-width:100%;}
 a{text-decoration:none;color:inherit;transition:var(--transition);}
 img{max-width:100%;height:auto;display:block;}
 ul{list-style:none;}
@@ -16,12 +16,19 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
 .container{max-width:1200px;margin:0 auto;padding:0 20px;}
 
 /* Announcement */
-.announcement-bar{background:var(--primary-dark);color:var(--white);font-size:13px;letter-spacing:0.5px;}
+.announcement-bar{
+    background:var(--primary-dark);color:var(--white);font-size:13px;letter-spacing:0.5px;
+    display:block;width:100%;max-width:100%;box-sizing:border-box;position:relative;z-index:1001;
+}
 .announcement-bar:not(.announcement-bar--scroll){text-align:center;padding:8px 20px;}
-.announcement-bar--scroll{overflow:hidden;padding:8px 0;white-space:nowrap;}
+.announcement-bar--scroll{padding:8px 0;overflow:hidden;max-width:100%;}
 .announcement-bar--scroll a{color:inherit;}
-.announcement-track{display:inline-flex;width:max-content;will-change:transform;animation:announcement-scroll var(--adbar-duration,25s) linear infinite;}
-.announcement-segment{padding:0 4rem;flex-shrink:0;display:inline-block;}
+.announcement-viewport{width:100%;max-width:100%;overflow:hidden;}
+.announcement-track{
+    display:flex;flex-wrap:nowrap;width:max-content;will-change:transform;
+    animation:announcement-scroll var(--adbar-duration,25s) linear infinite;
+}
+.announcement-segment{padding:0 4rem;flex-shrink:0;white-space:nowrap;}
 @keyframes announcement-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @media (prefers-reduced-motion:reduce){
     .announcement-bar--scroll .announcement-track{animation:none;}
