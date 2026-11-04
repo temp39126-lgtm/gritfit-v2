@@ -357,6 +357,7 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
     .hero-content h1{font-size:40px;}
     .products-grid{grid-template-columns:repeat(2,1fr);}
     .about-home,.about-grid,.contact-grid,.product-detail-grid{grid-template-columns:1fr;}
+    .about-home-img img{height:auto;max-height:none;object-fit:contain;object-position:center top;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     .features-row{grid-template-columns:1fr;gap:25px;}
     .product-listing-grid{grid-template-columns:repeat(3,1fr);}
