@@ -126,7 +126,13 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
 
 /* Page Hero */
 .page-hero{position:relative;height:350px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.page-hero img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;}
+.page-hero img,.page-hero .banner-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;}
+.page-hero .banner-img--mobile{display:none;}
+.banner-section .banner-img{width:100%;height:350px;object-fit:cover;}
+.banner-section .banner-img--mobile{display:none;}
+.about-home-img .banner-img{width:100%;height:auto;object-fit:cover;border-radius:var(--radius);}
+.about-home-img .banner-img--mobile{display:none;}
+.bottom-banner--has-bg{background-image:linear-gradient(rgba(13,20,26,0.7),rgba(13,20,26,0.7)),var(--bb-bg-desktop);background-size:cover;background-position:center;}
 .page-hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.65);}
 .page-hero h1{position:relative;z-index:1;color:var(--about-hero-h1-color,#fff);font-size:var(--about-hero-h1-size,48px);}
 .page-about .page-hero h1{color:var(--about-hero-h1-color,#fff);font-size:var(--about-hero-h1-size,48px);}
@@ -259,6 +265,13 @@ h1,h2,h3,h4,h5{font-family:var(--font-heading,'Playfair Display',serif);line-hei
     .hero-slider .slide .banner-img--mobile{display:block;}
     .hero .banner-img--desktop{display:none;}
     .hero .banner-img--mobile{display:block;}
+    .page-hero .banner-img--desktop{display:none;}
+    .page-hero .banner-img--mobile{display:block;}
+    .banner-section .banner-img--desktop{display:none;}
+    .banner-section .banner-img--mobile{display:block;}
+    .about-home-img .banner-img--desktop{display:none;}
+    .about-home-img .banner-img--mobile{display:block;}
+    .bottom-banner--has-bg{background-image:linear-gradient(rgba(13,20,26,0.7),rgba(13,20,26,0.7)),var(--bb-bg-mobile,var(--bb-bg-desktop));}
 }
 .hero-slider .slide-content .slide-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 .hero-slider .slide-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,20,26,0.7) 0%,rgba(13,20,26,0.35) 60%,rgba(13,20,26,0.2) 100%);z-index:1;}

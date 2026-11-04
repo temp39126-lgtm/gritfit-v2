@@ -43,7 +43,7 @@ $positions = [
 </div>
 <div class="card">
     <h3><?= $edit ? 'Edit Banner' : 'Add Banner' ?></h3>
-    <p class="hint">Homepage promotional banners. "Mid" banners appear in the banner strip on the homepage.</p>
+    <p class="hint">Each banner has separate <strong>Desktop image</strong> and <strong>Mobile image</strong> uploads (file or URL). "Mid" banners appear in the banner strip on the homepage.</p>
     <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="save_banner">
         <?php if ($edit): ?><input type="hidden" name="id" value="<?= (int)$edit['id'] ?>"><?php endif; ?>
@@ -56,9 +56,10 @@ $positions = [
         </div>
         <input type="hidden" name="current_image" value="<?= e($edit['image'] ?? '') ?>">
         <input type="hidden" name="current_image_mobile" value="<?= e($edit['image_mobile'] ?? '') ?>">
-        <?php adm_image_field('Banner Image (desktop / tablet)', 'image_file', 'image_url', $edit['image'] ?? ''); ?>
-        <?php adm_image_field('Banner Image (mobile, optional)', 'image_mobile_file', 'image_mobile_url', $edit['image_mobile'] ?? ''); ?>
-        <p class="hint">On phones (768px and below), the mobile image is used when set; otherwise the desktop image is shown.</p>
+        <?php adm_desktop_mobile_image_fields(
+            'image_file', 'image_url', $edit['image'] ?? '',
+            'image_mobile_file', 'image_mobile_url', $edit['image_mobile'] ?? ''
+        ); ?>
         <?php adm_text('Background Video URL (mp4) — for slider video slides; overrides image when set', 'video', $edit['video'] ?? '', 'text', 'placeholder="https://.../video.mp4"'); ?>
         <div class="form-row">
             <?php adm_text('Title (optional)', 'title', $edit['title'] ?? ''); ?>

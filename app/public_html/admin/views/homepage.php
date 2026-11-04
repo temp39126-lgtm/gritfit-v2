@@ -32,17 +32,8 @@ function hp_area($key, $label) {
             </select>
         </div>
         <?php hp_text('hero_video', 'Background Video URL (mp4)'); ?>
-        <div class="form-group"><label>Background Image (desktop / tablet)</label>
-            <?php if (setting('hero_image')): ?><div class="img-preview"><img src="<?= e(asset_url(setting('hero_image'))) ?>"></div><?php endif; ?>
-            <input type="file" name="file_hero_image" accept="image/*" onchange="previewImg(this)">
-            <input type="text" name="s[hero_image]" value="<?= e(setting('hero_image')) ?>" class="mt8" placeholder="or image path/URL">
-        </div>
-        <div class="form-group"><label>Background Image (mobile, optional)</label>
-            <?php if (setting('hero_image_mobile')): ?><div class="img-preview"><img src="<?= e(asset_url(setting('hero_image_mobile'))) ?>"></div><?php endif; ?>
-            <input type="file" name="file_hero_image_mobile" accept="image/*" onchange="previewImg(this)">
-            <input type="text" name="s[hero_image_mobile]" value="<?= e(setting('hero_image_mobile')) ?>" class="mt8" placeholder="or image path/URL">
-            <p class="hint">Shown on phones when hero type is Image. Leave empty to use the desktop image.</p>
-        </div>
+        <?php adm_setting_desktop_mobile_images('hero_image', 'hero_image_mobile'); ?>
+        <p class="hint">Applies when background type is <strong>Image</strong> (not video).</p>
         <?php hp_text('hero_title', 'Heading'); ?>
         <?php hp_text('hero_subtitle', 'Subheading'); ?>
         <div class="form-row">
@@ -79,11 +70,7 @@ function hp_area($key, $label) {
         <?php hp_chk('abouthome_enabled', 'Show about section'); ?>
         <?php hp_text('abouthome_title', 'Title'); ?>
         <?php hp_area('abouthome_text', 'Text'); ?>
-        <div class="form-group"><label>Image</label>
-            <?php if (setting('abouthome_image')): ?><div class="img-preview"><img src="<?= e(asset_url(setting('abouthome_image'))) ?>"></div><?php endif; ?>
-            <input type="file" name="file_abouthome_image" accept="image/*" onchange="previewImg(this)">
-            <input type="text" name="s[abouthome_image]" value="<?= e(setting('abouthome_image')) ?>" class="mt8" placeholder="or image path/URL">
-        </div>
+        <?php adm_setting_desktop_mobile_images('abouthome_image', 'abouthome_image_mobile'); ?>
         <div class="form-row">
             <?php hp_text('abouthome_btn_text', 'Button Text'); hp_text('abouthome_btn_link', 'Button Link'); ?>
         </div>

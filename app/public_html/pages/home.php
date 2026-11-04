@@ -115,8 +115,8 @@ foreach ($order as $section):
                         <p><?= e(setting('abouthome_text')) ?></p>
                         <?php if (setting('abouthome_btn_text')): ?><a href="<?= e(link_url(setting('abouthome_btn_link'))) ?>" class="btn btn-primary"><?= e(setting('abouthome_btn_text')) ?></a><?php endif; ?>
                     </div>
-                    <?php if (setting('abouthome_image')): ?>
-                    <div class="about-home-img"><img src="<?= e(asset_url(setting('abouthome_image'))) ?>" alt="About"></div>
+                    <?php if (setting('abouthome_image') || setting('abouthome_image_mobile')): ?>
+                    <div class="about-home-img"><?php cms_echo_responsive_banner_img(setting('abouthome_image'), setting('abouthome_image_mobile'), 'About'); ?></div>
                     <?php endif; ?>
                 </div>
             </div>

@@ -69,7 +69,8 @@ function cms_defaults() {
         'abouthome_enabled'    => '1',
         'abouthome_title'      => 'About Grit Fit Nutri',
         'abouthome_text'       => 'At Grit Fit Nutri, we create premium superfood energy bars that combine natural ingredients with health benefits for a modern lifestyle.',
-        'abouthome_image'      => 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=583,fit=crop/silemQfqUS99dRJ2/strawberry-about-mini-banner2-A3QOVoO0VXfMgyEo.jpg',
+        'abouthome_image'        => 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=583,fit=crop/silemQfqUS99dRJ2/strawberry-about-mini-banner2-A3QOVoO0VXfMgyEo.jpg',
+        'abouthome_image_mobile' => '',
         'abouthome_btn_text'   => 'Learn More',
         'abouthome_btn_link'   => '/about-us',
 
@@ -82,7 +83,9 @@ function cms_defaults() {
         'about_vision_title'   => 'Our Vision',
         'about_vision_text'    => 'At Grit Fit Nutri, our mission is to promote a healthier lifestyle by delivering premium, preservative-free superfood energy bars packed with natural nutrition. We are committed to quality, innovation, and sustainability, ensuring that our products meet global standards.',
         'about_banner_image'   => 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/silemQfqUS99dRJ2/collective-combination-1024x402-Yleqa574RZUoMZPw.jpg',
+        'about_banner_image_mobile' => '',
         'about_banner_alt'     => 'Products',
+        'about_hero_image_mobile' => '',
         'about_block1_title'   => 'GritFit Nutri – Your Trusted Partner for Global Nutrition Exports',
         'about_block1_text'    => 'GritFit Nutri is a leading manufacturer of premium nutritional products, specializing in white-label and private-label solutions. With world-class production facilities, stringent quality standards, and a commitment to international markets, we empower businesses to scale globally with confidence.',
         'about_block2_title'   => 'Scalable Manufacturing & Quality Assurance',
@@ -115,6 +118,7 @@ function cms_defaults() {
         // Bottom banner (call to action)
         'bottombanner_enabled' => '1',
         'bottombanner_image'   => '',
+        'bottombanner_image_mobile' => '',
         'bottombanner_title'   => 'Ready to Fuel Your Day?',
         'bottombanner_text'    => 'Explore our range of premium superfood energy bars made with clean, natural ingredients.',
         'bottombanner_btn_text' => 'Shop Now',
