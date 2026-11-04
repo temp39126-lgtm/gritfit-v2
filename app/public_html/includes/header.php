@@ -33,7 +33,6 @@ $siteName = setting('site_name');
     ?>
     <div class="announcement-bar<?= $adbarScrollSec > 0 ? ' announcement-bar--scroll' : '' ?>"<?= $adbarScrollSec > 0 ? ' style="--adbar-duration:' . e((string) $adbarScrollSec) . 's"' : '' ?>>
         <?php if ($adbarScrollSec > 0): ?>
-        <div class="announcement-viewport">
         <div class="announcement-track">
             <?php for ($adbarCopy = 0; $adbarCopy < 2; $adbarCopy++): ?>
             <span class="announcement-segment">
@@ -41,7 +40,6 @@ $siteName = setting('site_name');
                 <?php else: ?><?= e($adbarText) ?><?php endif; ?>
             </span>
             <?php endfor; ?>
-        </div>
         </div>
         <?php elseif ($adbarLink): ?><a href="<?= e(link_url($adbarLink)) ?>"><?= e($adbarText) ?></a>
         <?php else: ?><?= e($adbarText) ?><?php endif; ?>
