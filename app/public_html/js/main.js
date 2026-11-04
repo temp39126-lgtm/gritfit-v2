@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile dropdown
     document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
         link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 992) {
+            if (window.innerWidth <= 768) {
                 e.preventDefault();
                 this.parentElement.classList.toggle('open');
             }
